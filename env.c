@@ -1,5 +1,5 @@
 /*
- * File: environ.c
+ * File: env.c
  * Auth: Flovian owiti
  *       Victor azangu
  */
