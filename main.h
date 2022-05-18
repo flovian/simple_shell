@@ -92,4 +92,10 @@ char *_strtok(char *str, const char *delim);
 int is_in_str(const char *str, char c);
 int _atoi(char *str);
 
+/* alias.c */
+int shellby_alias(char **args, char __attribute__((__unused__)) * *front);
+void set_alias(char *var_name, char *value);
+void print_alias(alias_t *alias);
+char **replace_aliases(char **args);
+
 #endif

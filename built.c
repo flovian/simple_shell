@@ -42,20 +42,20 @@ int get_built(list_t *input_list, char *shell_name, list_t *env_list)
  */
 int exit_shell(list_t *input_list, char *shell_name, list_t **env_list_ptr)
 {
-    int num;
+int num;
 
-    if (input_list->next == NULL)
-        return (0);
+if (input_list->next == NULL)
+    return (0);
 
-    num = _atoi(input_list->next->name);
+ num = _atoi(input_list->next->name);
 
-    if (num == -1)
-    {
-        print_error(shell_name, "Invalid exit status\n");
-        return (-2);
-    }
+if (num == -1)
+{
+    print_error(shell_name, "Invalid exit status\n");
+    return (-2);
+}
 
-    (void)env_list_ptr;
+(void)env_list_ptr;
     return (num);
 }
 /**
@@ -84,19 +84,18 @@ int env_func(list_t *input_list, char *shell_name, list_t **env_list_ptr)
  */
 int setenv_func(list_t *input_list, char *shell_name, list_t **env_list_ptr)
 {
-    char *name, *value;
+char *name, *value;
 
-    if (input_list->next == NULL || input_list->next->next == NULL)
-    {
-        print_error(shell_name, "setenv error\n");
-        return (-2);
-    }
+if (input_list->next == NULL || input_list->next->next == NULL)
+{
+    print_error(shell_name, "setenv error\n");
+    return (-2);
+}
+name = input_list->next->name;
+value = input_list->next->next->name;
 
-    name = input_list->next->name;
-    value = input_list->next->next->name;
-
-    if (_setenv(*env_list_ptr, name, value, 1) == -1)
-        print_error(shell_name, "setenv error\n");
+if (_setenv(*env_list_ptr, name, value, 1) == -1)
+    print_error(shell_name, "setenv error\n");
 
     return (-2);
 }
@@ -112,16 +111,16 @@ int unsetenv_func(list_t *input_list, char *shell_name, list_t **env_list_ptr)
 {
     char *name;
 
-    if (input_list->next == NULL)
-    {
-        print_error(shell_name, "unsetenv error\n");
-        return (-2);
-    }
+if (input_list->next == NULL)
+{
+    print_error(shell_name, "unsetenv error\n");
+    return (-2);
+}
 
-    name = input_list->next->name;
+name = input_list->next->name;
 
-    if (_unsetenv(*env_list_ptr, name) == -1)
-        print_error(shell_name, "unsetenv error\n");
+if (_unsetenv(*env_list_ptr, name) == -1)
+    print_error(shell_name, "unsetenv error\n");
 
     return (-2);
 }
