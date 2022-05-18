@@ -33,6 +33,16 @@ typedef struct list_s
  *
  * Desc: struct representing shell built-in command
  */
+
+typedef struct alias_s
+{
+	char *name;
+	char *value;
+	struct alias_s *next;
+} alias_t;
+
+/* Global aliases linked list */
+alias_t *aliases;
 typedef struct built_s
 {
 	char *name;
