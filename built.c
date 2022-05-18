@@ -100,3 +100,28 @@ int setenv_func(list_t *input_list, char *shell_name, list_t **env_list_ptr)
 
     return (-2);
 }
+/**
+ * unsetenv_func - implements the unsetenv built-in functionality
+ * @input_list: list of command and arguments
+ * @shell_name: name of shell program
+ * @env_list_ptr: pointer list of environment variables
+ *
+ * Return: -2
+ */
+int unsetenv_func(list_t *input_list, char *shell_name, list_t **env_list_ptr)
+{
+    char *name;
+
+    if (input_list->next == NULL)
+    {
+        print_error(shell_name, "unsetenv error\n");
+        return (-2);
+    }
+
+    name = input_list->next->name;
+
+    if (_unsetenv(*env_list_ptr, name) == -1)
+        print_error(shell_name, "unsetenv error\n");
+
+    return (-2);
+}
