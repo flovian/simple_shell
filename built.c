@@ -74,3 +74,29 @@ int env_func(list_t *input_list, char *shell_name, list_t **env_list_ptr)
     (void)shell_name;
     return (-2);
 }
+/**
+ * setenv_func - implements the setenv built-in functionality
+ * @input_list: list of command and arguments
+ * @shell_name: name of shell program
+ * @env_list_ptr: pointer list of environment variables
+ *
+ * Return: -2
+ */
+int setenv_func(list_t *input_list, char *shell_name, list_t **env_list_ptr)
+{
+    char *name, *value;
+
+    if (input_list->next == NULL || input_list->next->next == NULL)
+    {
+        print_error(shell_name, "setenv error\n");
+        return (-2);
+    }
+
+    name = input_list->next->name;
+    value = input_list->next->next->name;
+
+    if (_setenv(*env_list_ptr, name, value, 1) == -1)
+        print_error(shell_name, "setenv error\n");
+
+    return (-2);
+}
