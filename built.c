@@ -32,3 +32,29 @@ int get_built(list_t *input_list, char *shell_name, list_t *env_list)
 
 	return (-1);
 }
+/**
+ * exit_shell - implements the exit built-in functionality
+ * @input_list: list of command and arguments
+ * @shell_name: name of shell program
+ * @env_list_ptr: pointer to list of environment variables
+ *
+ * Return: exit code. Otherwise -2
+ */
+int exit_shell(list_t *input_list, char *shell_name, list_t **env_list_ptr)
+{
+	int num;
+
+	if (input_list->next == NULL)
+		return (0);
+
+	num = _atoi(input_list->next->name);
+
+	if (num == -1)
+	{
+		print_error(shell_name, "Invalid exit status\n");
+		return (-2);
+	}
+
+	(void)env_list_ptr;
+	return (num);
+}
